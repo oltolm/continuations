@@ -50,8 +50,8 @@ public class TestIterator extends CoIterator<String> implements Serializable {
 }
 ```
 
-This class extends the class `CoIterator` which provides the produce method and implements all methods of the `Iterator` interface.
-The run method is an abstract method from `CoIterator` which is the body of our iterator. This method is declared to throw the special exception `SuspendExecution`. This exception must never be caught by any user code - it must be always propagated. But don't fear - you can still use the infamous `catch(Throwable)` if you like. This exception is the marker for suspendable methods - it tells the preprocessor that this method calls others methods which might suspend execution. In our example each call to produce will suspend execution until the consumer (the caller of `next`) has consumed the produced value. Let's take a look at code that uses our `Iterator`:
+This class extends the class `CoIterator` which provides the `produce` method and implements all methods of the `Iterator` interface.
+The `run` method is an abstract method from `CoIterator` which is the body of our iterator. This method is declared to throw the special exception `SuspendExecution`. This exception must never be caught by any user code - it must be always propagated. But don't fear - you can still use the infamous `catch(Throwable)` if you like. This exception is the marker for suspendable methods - it tells the preprocessor that this method calls others methods which might suspend execution. In our example each call to `produce` will suspend execution until the consumer (the caller of `next`) has consumed the produced value. Let's take a look at code that uses our `Iterator`:
 
 ```java
 Iterator<String> iter1 = new TestIterator();
